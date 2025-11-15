@@ -47,7 +47,7 @@ BACKUP_FILE_NAME=$MYSQL_HOST-$MYSQL_DATABASE-$TIMESTAMP.sql.gz
 BACKUP_FILE_FULL_PATH=$BACKUPDIR/$BACKUP_FILE_NAME
 mkdir -p $BACKUPDIR
 echo -e "create Backup for Database on Container:\n  * $MYSQL_DATABASE DB on $MYSQL_HOST to destination $BACKUP_FILE_FULL_PATH";
-MYSQL_PWD=$MYSQL_ROOT_PASSWORD /usr/bin/mariadb-dump -h $MYSQL_HOST -u root $MYSQL_DATABASE | gzip > $BACKUP_FILE_FULL_PATH
+MYSQL_PWD=$MYSQL_ROOT_PASSWORD /usr/bin/mariadb-dump -h $MYSQL_HOST -u root $MYSQL_DATABASE  --skip-ssl | gzip > $BACKUP_FILE_FULL_PATH
 echo -e "BACKUP created"
 
 if [[ "$FTP_UPLOAD_ENABLED" == "true" ]]
